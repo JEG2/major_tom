@@ -2,13 +2,14 @@ require_relative "point"
 
 module MajorTom
   class Board
-    def initialize(width: , height: )
+    def initialize(width: , height: , ships: )
       @width          = width
       @height         = height
+      @ships          = ships
       @recorded_shots = { }
     end
 
-    attr_reader :width, :height
+    attr_reader :width, :height, :ships
 
     attr_reader :recorded_shots
     private     :recorded_shots

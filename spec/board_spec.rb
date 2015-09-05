@@ -2,11 +2,15 @@ require_relative "../lib/major_tom/point"
 require_relative "../lib/major_tom/board"
 
 describe MajorTom::Board do
-  let(:board) { MajorTom::Board.new(width: 3, height: 2) }
+  let(:board) { MajorTom::Board.new(width: 3, height: 2, ships: [2]) }
 
   it "tracks its size" do
     expect(board.width).to  eq(3)
     expect(board.height).to eq(2)
+  end
+
+  it "tracks the ships" do
+    expect(board.ships).to eq([2])
   end
 
   it "tracks shots made" do

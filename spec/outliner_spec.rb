@@ -6,7 +6,7 @@ describe MajorTom::Outliner do
   it "lists shots until the ship is outlined" do
     # ~~~
     # ~SS
-    board    = MajorTom::Board.new(width: 3, height: 2)
+    board    = MajorTom::Board.new(width: 3, height: 2, ships: [2])
     hit      = MajorTom::Point.new(x: 1, y: 1)
     outliner = MajorTom::Outliner.new(board: board, hit: hit)
     shots    = [ ]
