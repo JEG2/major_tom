@@ -1,7 +1,7 @@
 module MajorTom
   class Message
     def self.parse(string)
-      type, key, *data = string.sub(/\|(.+)\|END\|/, '\1').split("|")
+      type, key, *data = string.sub(/\|(.+)\|END\|\s*/, '\1').split("|")
       new(type: type, key: key, data: data)
     end
 
