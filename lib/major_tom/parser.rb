@@ -19,7 +19,7 @@ module MajorTom
         message = Message.parse(line)
         handlers.each do |type, key, handler|
           if type === message.type && key === message.key
-            handler.call(message.data)
+            handler.call(message)
           end
         end
       end

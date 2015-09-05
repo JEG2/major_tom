@@ -14,10 +14,10 @@ describe MajorTom::Parser do
     expect(stream.pos).to eq(stream.string.length)
   end
 
-  it "delivers data to handlers for matching messages" do
+  it "delivers matching messages to handlers" do
     data = nil
-    parser.add_handler("INFO", "ship size") do |d|
-      data = d
+    parser.add_handler("INFO", "ship size") do |message|
+      data = message.data
     end
     parser.parse
     expect(data).to eq(%w[8 6 2])
