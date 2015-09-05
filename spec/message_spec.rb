@@ -1,6 +1,18 @@
 require_relative "../lib/major_tom/message"
 
 describe MajorTom::Message do
+  it "generates responses" do
+    message  = MajorTom::Message.new(
+      type: "QUERY",
+      key:  "shots",
+      data: ["3"]
+    )
+    response = message.respond(["0 0", "0 1"])
+    expect(response.type).to eq("RESPONSE")
+    expect(response.key).to  eq(message.key)
+    expect(response.data).to eq(["0 0", "0 1"])
+  end
+
   it "stringifies itself" do
     message = MajorTom::Message.new(
       type: "RESPONSE",

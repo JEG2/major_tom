@@ -13,6 +13,10 @@ module MajorTom
 
     attr_reader :type, :key, :data
 
+    def respond(new_data = [ ])
+      self.class.new(type: "RESPONSE", key: key, data: new_data)
+    end
+
     def to_s
       "|#{[type, key, *data].join('|')}|END|"
     end
