@@ -17,7 +17,7 @@ describe MajorTom::ShipPlacer do
 
     it "places on the board" do
       placements.each do |placement|
-        if placement.alignment == "H"
+        if placement.horizontal?
           expect(placement.point.x).to be_between(0, width - placement.size)
           expect(placement.point.y).to be_between(0, height)
         else

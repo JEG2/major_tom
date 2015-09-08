@@ -16,7 +16,7 @@ describe MajorTom::Parser do
 
   it "delivers matching messages to handlers" do
     data = nil
-    parser.add_handler("INFO", "ship size") do |message|
+    parser.add_handler(type: "INFO", key: "ship size") do |message|
       data = message.data
     end
     parser.parse

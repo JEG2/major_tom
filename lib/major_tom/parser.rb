@@ -10,7 +10,7 @@ module MajorTom
     attr_reader :stream, :handlers
     private     :stream, :handlers
 
-    def add_handler(type, key, &handler)
+    def add_handler(type: , key: , &handler)
       handlers << [type, key, handler]
     end
 

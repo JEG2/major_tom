@@ -22,13 +22,13 @@ module MajorTom
     private
 
     def randomly_place(ship)
-      alignment = %w[H V].sample
-      x, y      = alignment == "H" ? [rand(0..(width - ship)), rand(0..height)]
-                                   : [rand(0..width), rand(0..(height - ship))]
+      horizontal = [true, false].sample
+      x, y       = horizontal ? [rand(0..(width - ship)), rand(0..height)]
+                              : [rand(0..width), rand(0..(height - ship))]
       ShipPlacement.new(
-        point:     Point.new(x: x, y: y),
-        alignment: alignment,
-        size:      ship
+        point:      Point.new(x: x, y: y),
+        horizontal: horizontal,
+        size:       ship
       )
     end
 
