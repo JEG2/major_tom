@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/major_tom"
+
+MajorTom.play(input: $stdin, output: $stdout)
