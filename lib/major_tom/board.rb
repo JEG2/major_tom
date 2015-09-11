@@ -12,7 +12,6 @@ module MajorTom
     attr_reader :width, :height, :ships
 
     attr_reader :recorded_shots
-    private     :recorded_shots
 
     def record_hit(point)
       recorded_shots[point] = :hit
