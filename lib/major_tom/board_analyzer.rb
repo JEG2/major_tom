@@ -21,7 +21,6 @@ module MajorTom
       check_for_hits
       hit = @hit_queue.first
       @hit_queue.delete(hit)
-      @handled_hits.add(hit)
       hit
     end
 

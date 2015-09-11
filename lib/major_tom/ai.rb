@@ -8,14 +8,28 @@ module MajorTom
       @analyzer  = analyzer
       @primary   = primary
       @secondary = secondary
+      @shots     = Array.new
     end
 
     def shots(count)
-      if analyzer.new_hits?
-        secondary.new(board, analyzer.pop_hit)
-      else
-        primary.take(count)
+      outline_new_hits
+      shots = []
+      count.times do
+        shots << @shots.pop || primary.take(1)
       end
+      shots
+    end
+
+    private
+
+    def outline_new_hits
+      if analyzer.new_hits?
+        @shots.push(*use_secondary_strategy)
+      end
+    end
+
+    def use_secondary_strategy
+      secondary.new(board, point).each.to_a
     end
 
   end
