@@ -23,8 +23,8 @@ module MajorTom
 
     def randomly_place(ship)
       horizontal = [true, false].sample
-      x, y       = horizontal ? [rand(0..(width - ship)), rand(0..height)]
-                              : [rand(0..width), rand(0..(height - ship))]
+      x, y       = horizontal ? [rand(0...(width - ship)), rand(0...height)]
+                              : [rand(0...width), rand(0...(height - ship))]
       ShipPlacement.new(
         point:      Point.new(x: x, y: y),
         horizontal: horizontal,
