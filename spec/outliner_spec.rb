@@ -3,13 +3,14 @@ require_relative "../lib/major_tom/board"
 require_relative "../lib/major_tom/outliner"
 
 describe MajorTom::Outliner do
+  let(:board)    { MajorTom::Board.new(width: 3, height: 2, ships: [2]) }
+  let(:hit)      { MajorTom::Point.new(x: 1, y: 1) }
+  let(:outliner) { MajorTom::Outliner.new(board: board, hit: hit) }
+
   it "lists shots until the ship is outlined" do
     # ~~~
     # ~SS
-    board    = MajorTom::Board.new(width: 3, height: 2, ships: [2])
-    hit      = MajorTom::Point.new(x: 1, y: 1)
-    outliner = MajorTom::Outliner.new(board: board, hit: hit)
-    shots    = [ ]
+    shots = [ ]
     board.record_hit(hit)
     outliner.each do |shot|
       shots << shot
@@ -24,5 +25,9 @@ describe MajorTom::Outliner do
         MajorTom::Point.new(x: x, y: y)
       }
     )
+  end
+
+  it "enumerates shots" do
+    expect(outliner).to be_an(Enumerable)
   end
 end

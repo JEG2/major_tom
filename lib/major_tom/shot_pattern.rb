@@ -16,7 +16,10 @@ module MajorTom
     include Enumerable
 
     def each(&block)
-      shots.each(&block)
+      shots.each do |point|
+        next if board.recorded?(point)
+        block.call(point)
+      end
     end
   end
 end

@@ -8,6 +8,8 @@ module MajorTom
     attr_reader :board, :hit
     private     :board, :hit
 
+    include Enumerable
+
     def each(&block)
       board.neighbors(hit).shuffle.each do |point|
         next if board.recorded?(point)
