@@ -29,6 +29,13 @@ describe MajorTom::Board do
     expect(board).not_to be_on(off)
   end
 
+  it "lists all known hits" do
+    board.record_miss(MajorTom::Point.new(x: 0, y: 0))
+    hit = MajorTom::Point.new(x: 0, y: 1)
+    board.record_hit(hit)
+    expect(board.hits).to eq([hit])
+  end
+
   it "lists neighbors to a passed Point" do
     points = board.neighbors(MajorTom::Point.new(x: 1, y: 1))
     expect(points.sort).to eq(

@@ -38,6 +38,10 @@ module MajorTom
       point.x.between?(0, width - 1) && point.y.between?(0, height - 1)
     end
 
+    def hits
+      recorded_shots.select { |_, result| result == :hit }.keys
+    end
+
     def neighbors(point)
       [ Point.new(x: point.x,     y: point.y - 1),
         Point.new(x: point.x + 1, y: point.y),

@@ -8,8 +8,10 @@ module MajorTom
   module_function
 
   def play(input: , output: )
-    parser = Parser.new(input)
+    parser      = Parser.new(input)
+    output.sync = true
 
+    ai            = nil
     board         = nil
     board_details = { }
     parser.add_handler(type: "INFO", key: "grid size") do |info|
@@ -19,6 +21,7 @@ module MajorTom
     parser.add_handler(type: "INFO", key: "ship sizes") do |info|
       board_details.merge!(ships: info.data.map(&:to_i))
       board = Board.new(board_details)
+      ai    = AI.new(board)
     end
 
     parser.add_handler(type: "INFO", key: /\Ayou (?:miss|hit)\z/) do |info|
@@ -30,7 +33,6 @@ module MajorTom
       placements = ShipPlacer.new(board_details).place
       output.puts query.respond(placements)
     end
-    ai = AI.new(board)
     parser.add_handler(type: "QUERY", key: "shots") do |query|
       shots = ai.shots(query.data.first.to_i)
       output.puts query.respond(shots)
